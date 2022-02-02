@@ -20,6 +20,7 @@ end
 Ang = char(197);
 [~,rm1] = min(E);
 rmin1 = r(rm1);
+figure(1)
 plot(r,E,'b','LineWidth',1)
 xlim([2 4])
 ylim([-300 500])
@@ -49,7 +50,7 @@ set(gcf,'position',[400,400,450,350])
 rmin2 = r(rm2);
 
 %% Force vs atom position
-clear; clc; close all;
+clear; clc;
 
 N=50;
 rinit=2.5;
@@ -76,6 +77,7 @@ rinit = r3;
 % Plot
 Ang = char(197);
 LS = 1.5;
+figure(2)
 plot(x1,force1,'LineWidth',LS)
 hold on
 plot(x2,force2,'LineWidth',LS)
