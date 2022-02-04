@@ -6,7 +6,7 @@ sigma = 2.338;            %LJ sigma parameter
 epsilon = 2.4096;             %LJ epsilon parameter
 numNN = 2;
 
-r = 2:0.01:4;
+r = logspace(0.001,12,1800);
 E = zeros(1,length(r));
 
 for i = 1:length(r)
@@ -20,22 +20,23 @@ end
 Ang = char(197);
 [~,rm1] = min(E);
 rmin1 = r(rm1);
+E = E/50;   % normalize E
 figure(1)
-plot(r,E,'b','LineWidth',1)
+plot(r,E,'k*','MarkerSize',5)
 xlim([2 4])
-ylim([-300 500])
+ylim([-10 15])
 xlabel(['Atomic Spacing (',Ang,')'])
 ylabel('Energy (eV)')
 hold on
 % analytical plot
-r = logspace(0.001,12,1800);
+r = 2:0.01:4;
 Ea = 4.*epsilon.*((sigma./r).^12 - (sigma./r).^6);
 rmin = logspace(0.001,12,3000);
 Eamin = 4*epsilon*(((6*sigma^6)./rmin.^7) - ((12*sigma^12)./rmin.^13));
-Ea = Ea*100;
-plot(r,Ea,'k*','MarkerSize',5)
+% Ea = Ea*100;
+plot(r,Ea,'b','LineWidth',1)
 plot(rmin,Eamin,'LineWidth',0.6)
-anmin = 100*((4.*epsilon.*((sigma./rmin(105)).^12 - (sigma./rmin(105)).^6)) +...
+anmin = ((4.*epsilon.*((sigma./rmin(105)).^12 - (sigma./rmin(105)).^6)) +...
     (4.*epsilon.*((sigma./rmin(106)).^12 - (sigma./rmin(106)).^6)))/2;
 % zero line and legend
 z = linspace(0,5);
