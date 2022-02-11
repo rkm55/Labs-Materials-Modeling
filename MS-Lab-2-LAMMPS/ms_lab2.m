@@ -16,6 +16,7 @@ Etotlj = [9.96567496490893;4.38654652306884;-0.349063127438108;...
 % disp('equlibrium lattice parameter (Ang)')
 % disp(a(Ei))
 Ang = char(197);
+figure(1)
 plot(a,Etotlj,'*k','MarkerSize',5)
 lgd = legend(['Minimum Energy = ',num2str(a(Ei)),' ',Ang],...
     'Location','best');
@@ -50,6 +51,7 @@ ljE = -4.478;
 [~,a_lj] = min(Ecoh_lj);
 MS = 5.5;
 Ang = char(197);
+figure(2)
 hold on
 plot(a,Ecoh_eam,'*k','MarkerSize',MS)
 plot(a,Ecoh_lj,'*b','MarkerSize',MS)
@@ -102,6 +104,7 @@ Ecoheam = [-2.79969849307778;-3.24873380088813;-3.27316545772268;...
 Ecoheam = Ecoheam*-1;
 Evaceam = Etoteam-(-N.*Ecoheam);
 % plot
+figure(3)
 hold on
 plot(N,Evaclj,'--*b',"LineWidth",1)
 plot(N,Evaceam,'--*k',"LineWidth",1)
@@ -116,17 +119,52 @@ set(gcf,'position',[400,400,450,350])
 
 %% prob 5 surface energy
 
-% Total # of neighbors = 62230
-% Ave neighs/atom = 57.727273
-% Neighbor list builds = 0
-% Dangerous builds = 0
-% Total energy (eV) = -4497.06011124846;
-% Number of atoms = 1078;
+% all for LJ
+% Before removing planes
+% Total energy (eV) = -6143.33593132844;
+% Number of atoms = 1372;
 % Lattice constant (Angstoms) = 24.738;
-% Cohesive energy (eV) = -4.17166986201156;
-% %% ecoh = -4.17166986201156;
+% Cohesive energy (eV) = -4.47765009572044;
 
-% 1372 (Before removal)
+a = 3.534;
+rep = [7 8 9 10 11 12 13 14 15 16 17];
+A = (a*rep).^2;
+Etot = [-3619.44069248717 -5873.71116571335 -8884.67432512117...
+    -12759.7937730076 -17606.533111667 -23532.3559433881 -30644.725870477...
+    -39051.1064952173 -48858.9614199115 -60175.7542468611 -73108.9485782518];
+N = 4*(rep.^3);
+Ncut = [882;1408;2106;3000;4114;5472;7098;9016;11250;13824;16762].';
+Ecoh = -1*[-4.1036742545206 -4.17166986201232 -4.21874374412211...
+    -4.25326459100253 -4.27966288567501 -4.30050364462502 -4.31737473520386...
+    -4.33131172307202 -4.34301879288102 -4.3529914819778 -4.36158862774441];
+Esurf = (Etot-(-N.*Ecoh))./(2*A);
+
+figure(4)
+plot(N,Esurf)
+hold on
+plot(Ncut,Esurf)
+legend('N','Ncut')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
