@@ -86,8 +86,6 @@ set(gcf,'position',[400,400,450,350])
 % ECohb = -4.47765009571895;
 % Evacb = Etotb-(-Nb*ECohb);
 
-
-
 % LJ converge
 Etotlj = [-9.41278242184843 -134.329502871569 -474.630910146196...
     -1137.32312431258 -2229.86974766805 -3859.73438250981 -6134.38063113699];
@@ -96,10 +94,11 @@ Ecohlj = -1*[-3.13759414061614 -4.33320977005061 -4.43580289856258...
     -4.46009068357874 -4.46867684903417 -4.47246162515621 -4.47438412190882];
 Evaclj = Etotlj-(-N.*Ecohlj);
 % EAM converge
-Etoteam = [-8.54644129249801;-99.439027184234;-345.103114375457;...
-    -823.496542276313;-1612.19922070042;-2788.78846228253;-4430.84157964687].';
-Ecoheam = [-2.848813764166;-3.20771055433013;-3.2252627511725;...
-    -3.22939820500515;-3.23086016172429;-3.23150459128914;-3.23183193263813].';
+Etoteam = [-8.39909547923335;-100.710747827532;-350.228703976327;...
+    -836.129898783895;-1637.21024698046;-2832.26453691161;-4500.08755692957].';
+Ecoheam = [-2.79969849307778;-3.24873380088813;-3.27316545772268;...
+    -3.27894077954469;-3.28098245887868;-3.28188242979329;-3.28233957471158].';
+
 Ecoheam = Ecoheam*-1;
 Evaceam = Etoteam-(-N.*Ecoheam);
 % plot
@@ -107,6 +106,7 @@ hold on
 plot(N,Evaclj,'--*b',"LineWidth",1)
 plot(N,Evaceam,'--*k',"LineWidth",1)
 xlim([min(N) max(N)])
+ylim([2.7 4.7])
 lgd = legend(['  LJ   =  ',num2str(Evaclj(7)),' eV'],...
     ['EAM = ',num2str(Evaceam(7)),' eV'],'Location','best');
 title(lgd,'Converged Values')
@@ -114,7 +114,19 @@ xlabel('Number of Atoms')
 ylabel('Vacancy Formation Energy (eV)')
 set(gcf,'position',[400,400,450,350])
 
+%% prob 5 surface energy
 
+% Total # of neighbors = 62230
+% Ave neighs/atom = 57.727273
+% Neighbor list builds = 0
+% Dangerous builds = 0
+% Total energy (eV) = -4497.06011124846;
+% Number of atoms = 1078;
+% Lattice constant (Angstoms) = 24.738;
+% Cohesive energy (eV) = -4.17166986201156;
+% %% ecoh = -4.17166986201156;
+
+% 1372 (Before removal)
 
 
 
