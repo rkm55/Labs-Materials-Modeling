@@ -49,7 +49,7 @@ function [T,E,chainlength,time,pos,vel,forces]=molecular_dynamics(sigma,epsilon,
 
         %Evolve positions (full timestep) and velocities (1st half)
         pos(itime+1,:) = pos(itime,:) + vel(itime,:)*dt + forces(itime,:)*dt^2/(2*amass);
-        vh = vel(itime,:) + forces(itime,:)*dt/(2*amass);
+        vh = vel(itime,:) + (forces(itime,:)*dt)/(2*amass);
 
         %call LJ_atom_array to get total energy, force row vector, & chainlength
         % call LJ_atom_array to get current energy, forces and chain length
