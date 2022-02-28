@@ -1,0 +1,39 @@
+log output.${temp}.log
+# ---------- Read restart --------------------- 
+read_restart restartfile.${lasttemp}
+
+# ---------- Neighbor lists ---------------------
+neighbor 2.0 bin 
+neigh_modify delay 10 check yes 
+
+# ---------- Run Equilibration --------------------- 
+reset_timestep 0
+timestep 0.001
+fix 1 all npt temp ${temp} ${temp} 0.1 iso 0.0 0.0 1
+thermo 50
+run 1000
+
+# ---------- Run Sampling --------------------- 
+compute myMSD all msd com yes 
+compute myVACF all vacf
+compute myRDF all rdf 50
+fix 2 all ave/time 100 1 100 c_myRDF[*] file rdf.${temp}.out mode vector 
+thermo_style custom step temp epair etotal press c_myMSD[4] c_myVACF[4]
+print "StartSampling"
+run 1000
+print "EndSampling"
+#output a single snapshot at the end of the simulation
+dump 1 all cfg 1 dump.${temp}.*.cfg mass type xs ys zs
+run 0
+
+# ---------- Write restart ---------------------
+unfix 1
+unfix 2
+uncompute myMSD
+uncompute myVACF
+uncompute myRDF
+undump 1
+thermo_style one
+write_restart restartfile.${temp}
+
+print "All done!" 

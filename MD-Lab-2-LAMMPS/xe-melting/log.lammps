@@ -1,0 +1,3 @@
+LAMMPS (7 Jan 2022)
+log output.${temp}.log
+log output.180.log
