@@ -1,14 +1,14 @@
 % Modeling Materials (ME EN 556) - Mesoscale Lab
 
 %set simulation variables
-Nspins = 2;         %set to 2 for Ising, > 2 for Potts 
-Nsweeps = 600;       %number of sweeps over the lattice to 
+Nspins = 6;         %set to 2 for Ising, > 2 for Potts 
+Nsweeps = 500;       %number of sweeps over the lattice to 
 Xmax=50;            %number of sites in x-direction
 Ymax=50;            %number of sites in the y-direction
-T=5;               %non-dimensional temperature value
+T=.1;               %non-dimensional temperature value
 interfaceEnergy=1;  %non-dimensional boundary energy
 
-plotMat=false;      %plot simulation - turn off inside MATLAB Grader
+plotMat=true;      %plot simulation - turn off inside MATLAB Grader
 randseed = 1;       %used to ensure identical answers in stochastic simulations
 rng(randseed);      %set the random seed
 
