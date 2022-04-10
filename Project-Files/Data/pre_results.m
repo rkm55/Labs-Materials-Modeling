@@ -2,13 +2,13 @@ clc; clear; close all;
 %%% Preliminary results data
 
 %% Total PE
-d900 = importdata('900K.txt','\t',1);
+d900 = importdata('5x.txt','\t',1);
 d900 = d900.data;
-d850 = importdata('850K.txt','\t',1);
+d850 = importdata('6x.txt','\t',1);
 d850 = d850.data;
-d800 = importdata('800K.txt','\t',1);
+d800 = importdata('7x.txt','\t',1);
 d800 = d800.data;
-d750 = importdata('750K.txt','\t',1);
+d750 = importdata('8x.txt','\t',1);
 d750 = d750.data;
 
 t1 = d750(:,1);
@@ -46,7 +46,7 @@ hold on
 % yline([m_900 m_850 m_800 m_750],'--k')
 legend('900 K','850 K','800K','750 K','Location','best')
 xlabel('Step')
-ylabel('Total Energy (eV)')
+ylabel('Total Energy Per Atom (eV)')
 % ylim([-4.68e4 -4.61e4])
 
 % Initital GB Energy
